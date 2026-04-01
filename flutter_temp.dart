@@ -11,7 +11,7 @@ void main(List<String> arguments) async {
 
   print('\n--- 🏗️  STARTING PROJECT CREATION: $projectName ---');
 
-  // ১. ফ্লাটার প্রজেক্ট ক্রিয়েট করা
+  // ১. flutter create command run
   print('Step 1: Running "flutter create"...');
   var createResult = await Process.run('flutter', [
     'create',
@@ -23,7 +23,7 @@ void main(List<String> arguments) async {
   }
   Directory.current = Directory('${Directory.current.path}/$projectName');
 
-  // ২. এসেটস ফোল্ডার তৈরি
+  // ২. assets folder create
   print('Step 2: Creating Assets folders...');
   final assetFolders = [
     'animations',
@@ -37,7 +37,7 @@ void main(List<String> arguments) async {
     await Directory('assets/$folder').create(recursive: true);
   }
 
-  // ৩. রুট ফাইলগুলো তৈরি (.env, l10n.yaml)
+  // ৩. creating root files (.env, l10n.yaml, create_feature.dart)
   print(
     'Step 3: Creating Config files (.env, l10n.yaml, create_feature.dart)...',
   );
@@ -53,7 +53,7 @@ void main(List<String> arguments) async {
   untranslated-messages-file: lib/l10n/untranslated.json  
   ''');
 
-  // --- Create Feature Script জেনারেট করা (Project Root-এ) ---
+  // --- Create Feature Script  (Project Root-) ---
   print('📝 Generating "create_feature.dart" in project root...');
 
   File('create_feature.dart').writeAsStringSync('''
@@ -171,11 +171,11 @@ String _bindingTemplate(String c, String p) => "import 'package:\$p/core/utils/c
 String _repositoryTemplate(String c, String p) => "import 'package:\$p/core/utils/constants/imports.dart';\\n\\nclass \${c}Repository { }";
 ''');
 
-  // ৪. pubspec.yaml নতুন করে তৈরি করা (নিখুঁত পদ্ধতির জন্য)
+  // ৪. pubspec.yaml create
   print('Step 4: Writing a clean and structured pubspec.yaml...');
   print('Step 4: Writing a clean pubspec.yaml (Auto-detecting SDK)...');
 
-  // অটো ভার্সন ডিটেক্ট করা
+  // auto version detect
   final String currentDartVersion = Platform.version.split(' ').first;
   final pubspecFile = File('pubspec.yaml');
 
@@ -279,7 +279,6 @@ flutter:
   await pubspecFile.writeAsString(newPubspecContent);
   print('✅ pubspec.yaml generated successfully with proper indentation.');
 
-  // ৫. প্যাকেজ ইন্সটলেশন
   print('Step 5: Installing all dependencies...');
   final packages = [
     'cupertino_icons',
@@ -336,7 +335,7 @@ flutter:
     ...devPackages,
   ], runInShell: true);
 
-  // ৬. RPS গ্লোবাল এক্টিভেশন
+  // ৬. RPS global activate
   print('Step 6: Activating RPS globally...');
   await Process.run('dart', [
     'pub',
@@ -345,7 +344,7 @@ flutter:
     'rps',
   ], runInShell: true);
 
-  // main.dart রি-রাইট করা (আপনার দেওয়া কোড অনুযায়ী)
+  // main.dart
   print('📝 Overwriting lib/main.dart...');
   File('lib/main.dart').writeAsStringSync('''
 import 'core/utils/constants/imports.dart';
@@ -368,7 +367,7 @@ runApp(const MyApp());
 }
 ''');
 
-  // App.dart তৈরি
+  // App.dart
   File('lib/app.dart').writeAsStringSync('''
 import 'package:$projectName/router/app_pages.dart';
 import 'core/utils/constants/imports.dart';
@@ -404,7 +403,6 @@ class MyApp extends StatelessWidget {
 }
 ''');
 
-  // ৭. লিব ফোল্ডার এবং বয়লারপ্লেট তৈরি
   print('Step 7: Generating Boilerplate files and Architecture...');
 
   final libFolders = [
@@ -444,7 +442,6 @@ class MyApp extends StatelessWidget {
     await Directory(folder).create(recursive: true);
   }
 
-  // ফোল্ডার তৈরি শেষ, এখন ফাইল রাইট করা হবে
   print('📝 Writing files into folders...');
 
   // ARB Files (Localization)
@@ -559,7 +556,7 @@ class MyApp extends StatelessWidget {
 
   print('\n--- global text style generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
+  // insure folder
   Directory('lib/core/common/styles').createSync(recursive: true);
 
   File('lib/core/common/styles/global_text_style.dart').writeAsStringSync('''
@@ -585,7 +582,7 @@ class MyApp extends StatelessWidget {
 
   print('\n--- localization extension generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
+  // insure folder
   Directory('lib/core/localization').createSync(recursive: true);
 
   File('lib/core/localization/localization_extension.dart').writeAsStringSync(
@@ -601,7 +598,7 @@ class MyApp extends StatelessWidget {
 
   print('\n--- localization service generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
+  // insure folder
   Directory('lib/core/localization').createSync(recursive: true);
 
   File('lib/core/localization/localization_service.dart').writeAsStringSync('''
@@ -651,7 +648,7 @@ class MyApp extends StatelessWidget {
 
   print('\n--- dio helper generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
+  // insure folder
   Directory('lib/core/network').createSync(recursive: true);
 
   File('lib/core/network/dio_helper.dart').writeAsStringSync('''
@@ -727,7 +724,6 @@ class MyApp extends StatelessWidget {
 
   print('\n--- http method generating... ---');
 
-  // ফোল্ডার নিশ্চিত করা হচ্ছে
   Directory('lib/core/network').createSync(recursive: true);
 
   File('lib/core/network/http_method.dart').writeAsStringSync('''
@@ -884,7 +880,6 @@ class HttpMethod {
 
   print('\n--- analytics service generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
   Directory('lib/core/services').createSync(recursive: true);
 
   File('lib/core/services/analytics_service.dart').writeAsStringSync('''
@@ -915,7 +910,6 @@ class AnalyticsService extends GetxService {
 
   print('\n--- crashlytics service generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
   Directory('lib/core/services').createSync(recursive: true);
 
   File('lib/core/services/crashlytics_service.dart').writeAsStringSync('''
@@ -966,7 +960,6 @@ class CrashlyticsService extends GetxService {
 
   print('\n--- location service generating... ---');
 
-  // ফোল্ডার নিশ্চিত করা হচ্ছে
   Directory('lib/core/services').createSync(recursive: true);
 
   File('lib/core/services/location_service.dart').writeAsStringSync('''
@@ -1085,7 +1078,6 @@ class LocationService extends GetxService {
 
   print('\n--- media service generating... ---');
 
-  // ফোল্ডারটি নিশ্চিত করা হচ্ছে
   Directory('lib/core/services').createSync(recursive: true);
 
   File('lib/core/services/media_service.dart').writeAsStringSync('''
@@ -2963,15 +2955,18 @@ export 'package:$projectName/features/splash/repositories/splash_repository.dart
 
 ''');
 
+  // --- SUCCESS MESSAGE & WARNING ---
   print('\n' + '=' * 60);
   print('🏁  PROJECT ARCHITECTURE IS READY!');
+  print('   © 2026 | devmarufurrahman');
   print('=' * 60);
   print('\n⚠️  IMPORTANT: YOU MUST RUN THESE COMMANDS MANUALLY NOW:');
   print('------------------------------------------------------------');
-  print(' cd $projectName');
-  print(' importing roboto font');
-  print(' rps gen');
-  print(' flutter run');
+  print(' 1️⃣  cd $projectName');
+  print(' 2️⃣  importing roboto font');
+  print(' 3️⃣  rps gen');
+  print(' 4️⃣  flutter run');
   print('------------------------------------------------------------');
+  print('🚀 Created by: devmarufurrahman');
   print('=' * 60 + '\n');
 }

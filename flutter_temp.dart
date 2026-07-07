@@ -2965,7 +2965,8 @@ export 'package:$projectName/features/splash/repositories/splash_repository.dart
   print(' 1️⃣  cd $projectName');
   print(' 2️⃣  importing roboto font');
   print(' 3️⃣  rps gen');
-  print(' 4️⃣  flutter run');
+  print(' 4️⃣  test file app.dart import error fix');
+  print(' 5️⃣  flutter run');
   print('------------------------------------------------------------');
   print('🚀 Created by: devmarufurrahman');
   print('=' * 60 + '\n');

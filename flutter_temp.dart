@@ -193,7 +193,7 @@ environment:
 
 # RPS Scripts for automation
 scripts:
-  gen: flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs
+  gen: flutter gen-l10n && dart run build_runner build --delete-conflicting-outputs --force-jit
   clean:android: "flutter clean && flutter pub get && cd android && ./gradlew clean && cd .."
   clean:ios: "flutter clean && flutter pub get && cd ios && rm -rf Podfile.lock && pod install && cd .."
   clean:flutter: flutter clean && flutter pub get

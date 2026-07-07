@@ -306,7 +306,7 @@ flutter:
     'intl_phone_field',
     'webview_flutter',
     'image_picker',
-    'file_picker',
+    'file_picker: ^11.0.2',
     'lottie',
     'zo_animated_border',
     'app_settings',
